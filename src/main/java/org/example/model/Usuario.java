@@ -25,7 +25,7 @@ public class Usuario {
     public List<Compra> getCompras() {
         return compras;
     }
-    
+
 
     public String getLogin() {
         return login;
