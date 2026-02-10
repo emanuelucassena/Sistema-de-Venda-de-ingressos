@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,18 +9,13 @@ public class Evento {
     private String nome;
     private String descricao;
     private Date data;
-    private List<Ingresso> ingressos;
+    private List<Ingresso> ingressos = new ArrayList<>();
     private String status;
 
-
-    public Evento() {
-    }
-
-    public Evento(String nome, String descricao, Date data, List<Ingresso> ingressos, String status) {
+    public Evento(String nome, String descricao, Date data, String status) {
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;
-        this.ingressos = ingressos;
         this.status = status;
     }
 
@@ -51,9 +47,6 @@ public class Evento {
         return ingressos;
     }
 
-    public void setIngressos(List<Ingresso> ingressos) {
-        this.ingressos = ingressos;
-    }
 
     public String getStatus() {
         return status;

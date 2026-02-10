@@ -1,31 +1,23 @@
 package org.example.model;
 
-import java.util.List;
-
 public class Usuario {
 
     private String login;
     private String senha;
     private String nome;
-    private String CPF;
+    private String cpf;
     private String email;
-    private List<Compra>compras;
 
     public Usuario() {
     }
 
-    public Usuario(String login, String senha, String nome, String CPF, String email) {
+    public Usuario(String login, String senha, String nome, String cpf, String email) {
         this.login = login;
         this.senha = senha;
         this.nome = nome;
-        this.CPF = CPF;
+        this.cpf = cpf;
         this.email = email;
     }
-
-    public List<Compra> getCompras() {
-        return compras;
-    }
-
 
     public String getLogin() {
         return login;
@@ -51,10 +43,13 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public String getEmail() {
         return email;

@@ -6,16 +6,12 @@ public class Compra {
 
     private Usuario usuario;
     private Ingresso ingresso;
-    private Date data;
+    private Date date;
 
-
-    public Compra() {
-    }
-
-    public Compra(Usuario usuario, Ingresso ingresso, Date data) {
+    public Compra(Usuario usuario, Ingresso ingresso, Date date) {
         this.usuario = usuario;
         this.ingresso = ingresso;
-        this.data = data;
+        this.date = date;
     }
 
     public Usuario getUsuario() {
@@ -34,11 +30,11 @@ public class Compra {
         this.ingresso = ingresso;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDate() {
+        return date;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
