@@ -18,6 +18,12 @@ public class Evento {
         this.data = data;
         this.status = status;
     }
+    public Evento(String nome, String descricao, Date data) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.data = data;
+
+    }
 
     public String getNome() {
         return nome;
@@ -47,6 +53,9 @@ public class Evento {
         return ingressos;
     }
 
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
+    }
 
     public String getStatus() {
         return status;
