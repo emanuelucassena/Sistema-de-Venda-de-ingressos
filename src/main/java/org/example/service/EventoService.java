@@ -7,31 +7,44 @@ import org.example.exceptions.evento.exceptions.QuantidadedeIngressosInvalidaExc
 import org.example.model.Evento;
 import org.example.model.Ingresso;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class EventoService {
 
     List<Evento> eventos = new ArrayList<>();
+    private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public void cadastrarEvento(String nome, String descricao, Date data, int qtdIngresso, float valorIngresso){
-        if (data.before(new Date())){
-            throw new DataInvalidaException("Não é possível cadastrar eventos em datas passadas. ");
+    public void cadastrarEvento(String nome, String descricao, String dataStr, int qtdIngresso, float valorIngresso) {
+
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dataEvento = LocalDate.parse(dataStr, fmt);
+
+
+        if (dataEvento.isBefore(LocalDate.now())) {
+            throw new DataInvalidaException("Não é possível cadastrar eventos em datas passadas.");
         }
-        if (qtdIngresso <= 0){
+
+        // 3. Validação de quantidade [cite: 8]
+        if (qtdIngresso <= 0) {
             throw new QuantidadedeIngressosInvalidaException("O evento deve ter pelo menos um ingresso disponível.");
         }
-        for (Evento e : eventos){
-            if (e.getNome().equals(nome) && e.getData().equals(data)){
+
+
+        for (Evento e : eventos) {
+
+            if (e.getNome().equalsIgnoreCase(nome) && e.getData().equals(dataEvento)) {
                 throw new EventoJaCadastradoException("Já existe um evento com este nome nesta data.");
             }
         }
-        Evento evento = new Evento(nome, descricao, data);
+
+        Evento evento = new Evento(nome, descricao, dataEvento);
+
         List<Ingresso> ingressosGerados = new ArrayList<>();
         for (int i = 1; i <= qtdIngresso; i++) {
             String idIngresso = nome.substring(0, Math.min(nome.length(), 3)).toUpperCase() + "-" + i;
-
             Ingresso ingresso = new Ingresso(idIngresso, valorIngresso, "Disponível");
             ingressosGerados.add(ingresso);
         }
@@ -39,10 +52,9 @@ public class EventoService {
         evento.setIngressos(ingressosGerados);
         evento.setStatus("Ativo");
         eventos.add(evento);
-
     }
 
-    public List<Evento> listarEventosDisponiveis(Evento evento) {
+    public List<Evento> listarEventosDisponiveis() {
         List<Evento> ativos = new ArrayList<>();
         for (Evento e : eventos) {
             if (e.getStatus().equals("Ativo")){

@@ -1,18 +1,28 @@
 package org.example.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Compra {
 
     private Usuario usuario;
     private Ingresso ingresso;
-    private Date date;
+    private Evento evento;
+    private LocalDate date;
 
-    public Compra(Usuario usuario, Ingresso ingresso, Date date) {
+    public Compra(Usuario usuario, Ingresso ingresso, LocalDate date) {
         this.usuario = usuario;
         this.ingresso = ingresso;
         this.date = date;
     }
+    public Compra(Usuario usuario, Ingresso ingresso, Evento evento, LocalDate date) {
+        this.usuario = usuario;
+        this.ingresso = ingresso;
+        this.evento = evento;
+        this.date = date;
+    }
+
+
 
     public Usuario getUsuario() {
         return usuario;
@@ -23,18 +33,26 @@ public class Compra {
     }
 
     public Ingresso getIngresso() {
-        return ingresso;
+        return this.ingresso;
     }
 
     public void setIngresso(Ingresso ingresso) {
         this.ingresso = ingresso;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 }

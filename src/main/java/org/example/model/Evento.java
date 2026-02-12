@@ -1,24 +1,24 @@
 package org.example.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Evento {
 
     private String nome;
     private String descricao;
-    private Date data;
+    private LocalDate data;
     private List<Ingresso> ingressos = new ArrayList<>();
     private String status;
 
-    public Evento(String nome, String descricao, Date data, String status) {
+    public Evento(String nome, String descricao, LocalDate data, String status) {
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;
         this.status = status;
     }
-    public Evento(String nome, String descricao, Date data) {
+    public Evento(String nome, String descricao, LocalDate data) {
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;
@@ -41,11 +41,11 @@ public class Evento {
         this.descricao = descricao;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
